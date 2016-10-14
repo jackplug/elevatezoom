@@ -640,6 +640,14 @@ if ( typeof Object.create !== 'function' ) {
 				//container fix
 				self.zoomContainer.css({ top: self.nzOffset.top});
 				self.zoomContainer.css({ left: self.nzOffset.left});
+				
+				// Fix for zoom type 'inner' with gallery images
+				// (changing to a gallery image with different dimensions leaves zoomwindow at original size)
+				if (self.options.zoomType == "inner") {
+					self.zoomContainer.css({ width: self.nzWidth + 'px'});
+					self.zoomWindow.css({ width: self.nzWidth + 'px'});
+				}
+				
 				self.mouseLeft = parseInt(e.pageX - self.nzOffset.left);
 				self.mouseTop = parseInt(e.pageY - self.nzOffset.top);
 				//calculate the Location of the Lens
