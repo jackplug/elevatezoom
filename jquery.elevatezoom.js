@@ -23,6 +23,25 @@
  *	http://en.wikipedia.org/wiki/MIT_License
  *	http://en.wikipedia.org/wiki/GNU_General_Public_License
  */
+/*
+ *	jQuery elevateZoom 3.0.8
+ *	Demo's and documentation:
+ *	www.elevateweb.co.uk/image-zoom
+ *
+ *	Copyright (c) 2012 Andrew Eades
+ *	www.elevateweb.co.uk
+ *
+ *	Dual licensed under the GPL and MIT licenses.
+ *	http://en.wikipedia.org/wiki/MIT_License
+ *	http://en.wikipedia.org/wiki/GNU_General_Public_License
+ *
+
+/*	jQuery elevateZoom 3.0.8-1.0.1
+ *  	Modifications:
+ *  	v3.0.8-1.0.0 - BUGFIX: zoom image incorrectly positioned when type:inner is combined with gallery images
+ *  	v3.0.8-1.0.1 - BUGFIX: zoom image incorrectly positioned when type:inner is combined with gallery images and useParentElement:true
+ *
+ */
 
 
 if ( typeof Object.create !== 'function' ) {
@@ -116,7 +135,7 @@ if ( typeof Object.create !== 'function' ) {
 			startZoom: function( ) {
 				var self = this;
 				//get dimensions of the non zoomed image
-				self.nzWidth = self.$elem.width();
+				self.nzWidth = self.options.useParentElement ? self.$elem.parent().width() : self.$elem.width();
 				self.nzHeight = self.$elem.height();
 
 				//activated elements
@@ -573,7 +592,7 @@ if ( typeof Object.create !== 'function' ) {
 				//recaclc offset each time in case the image moves
 				//this can be caused by other on page elements
 				self.nzHeight = self.$elem.height();
-				self.nzWidth = self.$elem.width();
+				self.nzWidth = self.options.useParentElement ? self.$elem.parent().width() : self.$elem.width();
 				self.nzOffset = self.$elem.offset();
 
 				if(self.options.tint && self.options.zoomType != "inner") {
@@ -1395,7 +1414,7 @@ if ( typeof Object.create !== 'function' ) {
 				}   
 
 				self.nzOffset = self.$elem.offset();
-				self.nzWidth = self.$elem.width();
+				self.nzWidth = self.options.useParentElement ? self.$elem.parent().width() : self.$elem.width();
 				self.nzHeight = self.$elem.height();
 
 				// reset the zoomlevel back to default
